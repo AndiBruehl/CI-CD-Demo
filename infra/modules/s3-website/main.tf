@@ -47,3 +47,6 @@ resource "aws_s3_bucket_policy" "this" {
     ]
   })
 }
+output "bucket_name" {
+ value = aws_s3_bucket.website.bucket
+}

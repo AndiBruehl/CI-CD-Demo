@@ -1,4 +1,4 @@
 module "s3-website" {
-  source = "./modules/s3-website"
-  bucket_name = "my-website-bucket-ha139"
+ source = "../modules/s3-website"
+ bucket_name = var.bucket_name
 }
