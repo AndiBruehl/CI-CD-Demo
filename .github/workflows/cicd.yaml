@@ -33,8 +33,8 @@ jobs:
       - run: aws s3 ls --region eu-central-1 --profile 360425496229_Student      
       - uses: hashicorp/setup-terraform@v2
       - run: terraform version
-      - run: terraform -chdir=./infra init
+      - run: terraform -chdir=./infra init -backend-config="bucket=${bucket_name}"
       - run: terraform -chdir=./infra validate
       - run: terraform -chdir=./infra apply -auto-approve
       - run: terraform -chdir=./infra apply -auto-approve
-      - run: aws s3 sync --region eu-central-1 ./build s3://my-website-bucket-fabio--23112023/ --profile 360425496229_Student 
+      - run: aws s3 sync --region eu-central-1 ./build s3://${bucket_name}/ --profile 360425496229_Student 
