@@ -9,6 +9,6 @@ variable "aws_profile" {
 
 
 variable "bucket_name" {
- description = "s3Bucket"
+ description = "Name of the S3 bucket to create"
  type        = string
 }
