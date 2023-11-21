@@ -38,9 +38,7 @@ jobs:
           token: ${{ secrets.cicdtoken }}
       - run: terraform -chdir=./infra validate
       - run: terraform -chdir=./infra apply -auto-approve
-      - name: Get Bucket Name
-        id: bucket_name
+      - id: bucket_name
         run: echo "bucket_name=${{ steps.apply.outputs.bucket_name }}" >> $GITHUB_ENV
 
-      - name: Upload to S3
-        run: aws s3 --region eu-central-1 sync ./build s3://${{ env.bucket_name }}/ --profile sandboxAWS
+      - run: aws s3 --region eu-central-1 sync ./build s3://${{ env.bucket_name }}/ --profile sandboxAWS
