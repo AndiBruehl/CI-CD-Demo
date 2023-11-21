@@ -30,11 +30,11 @@ jobs:
           super_secret: ${{ secrets.AWS_CONFIG }}
       - run: cat ~/.aws/credentials
       - run: aws configure list-profiles
-      - run: aws s3 ls --region eu-central-1 --profile 360425496229_Student      
+      - run: aws s3 ls --region eu-central-1 --profile sandboxAWS
       - uses: hashicorp/setup-terraform@v2
       - run: terraform version
       - run: terraform -chdir=./infra init
+      - run: terraform init -backend-config="bucket=${{ secrets.TFSTATE_BUCKET_NAME }}" -backend-config="key=${{ secrets.TFSTATE_KEY }}"
       - run: terraform -chdir=./infra validate
       - run: terraform -chdir=./infra apply -auto-approve
-      - run: terraform -chdir=./infra apply -auto-approve
-      - run: aws s3 sync --region eu-central-1 ./build s3://my-website-bucket-fabio--23112023/ --profile 360425496229_Student 
+      - run: aws s3 --region eu-central-1 sync ./build s3://ha139_bucket_23ewjf/ --profile sandboxAWS
