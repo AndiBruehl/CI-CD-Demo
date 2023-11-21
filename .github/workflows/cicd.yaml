@@ -35,7 +35,7 @@ jobs:
       - run: terraform version
       - run: terraform -chdir=./infra init -backend-config="password=$token"
         env:
-          token: ${{ secrets.TFSTATE_TOKEN }}
+          token: ${{ secrets.cicdtoken }}
       - run: terraform -chdir=./infra validate
       - run: terraform -chdir=./infra apply -auto-approve
       - run: aws s3 --region eu-central-1 sync ./build s3://ha139Bucket/ --profile sandboxAWS
