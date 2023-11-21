@@ -37,7 +37,7 @@ jobs:
         env:
           token: ${{ secrets.cicdtoken }}
       - run: terraform -chdir=./infra validate
-      - run: terraform -chdir=./infra apply -auto-approve
+      - run: terraform -chdir=./infra apply -auto-approve -lock=false
       - id: bucket_name
         run: echo "bucket_name=${{ steps.apply.outputs.bucket_name }}" >> $GITHUB_ENV
 
