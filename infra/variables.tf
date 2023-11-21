@@ -9,6 +9,6 @@ variable "aws_profile" {
 
 
 variable "bucket_name" {
- description = "my-website-bucket-fabio--23112023"
+ description = "s3Bucket"
  type        = string
 }
